@@ -32,4 +32,4 @@ pids
 # Web-ext artifacts
 web-ext-artifacts/
 
-README.md
+package.json
