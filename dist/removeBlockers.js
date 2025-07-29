@@ -1,5 +1,20 @@
 "use strict";
 
+// Inject CSS immediately to hide blockers ASAP
+const style = document.createElement('style');
+style.textContent = `
+    body { overflow: visible !important; position: static !important; }
+    div#ContentHardsell,
+    div#ContentWallHardsell,
+    div#HardsellOverlay,
+    div#LapsedContentHardsell,
+    div#UserAlert,
+    dialogue#SmarterBannerContainer {
+        display: none !important;
+    }
+`;
+document.documentElement.appendChild(style);
+
 // Optimized Clear Glass Firefox Extension - removes blockers from job review sites
 class RemoveBlockers {
     constructor() {
