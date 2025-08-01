@@ -1,9 +1,12 @@
 "use strict";
 
-browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     if (message.action === 'displayCount') {
-        browser.browserAction.setBadgeText({ text: message.data.blockedCount.toString() });
-        setTimeout(() => browser.browserAction.setBadgeText({ text: '' }), 2000);
+        await browser.action.setBadgeText({ text: message.data.blockedCount.toString() });
+        setTimeout(async () => {
+            await browser.action.setBadgeText({ text: '' });
+        }, 2000);
         sendResponse({ result: 'success' });
+        return true;
     }
 });
