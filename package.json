@@ -1,0 +1,8 @@
+{
+  "name": "clear-glass-firefox",
+  "version": "1.2.13",
+  "description": "Firefox port of Clear Glass - removes obstructions from job review sites",
+  "scripts": {
+    "dev": "web-ext run --source-dir . --firefox-profile \"default-release\""
+  }
+}

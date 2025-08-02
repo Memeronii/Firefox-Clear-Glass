@@ -14,6 +14,12 @@ This extension is adapted from the original Chrome Web Store extension to work n
 - 🔢 Displays count of blocked elements in browser badge
 - 🌍 Works on all international Glassdoor domains
 
+## Supported Sites
+
+- **Glassdoor** - All international domains (.com, .co.uk, .de, .fr, etc.)
+- **TeamBlind** - teamblind.com
+- **Repvue** - repvue.com
+
 ## Installation
 
 ### Firefox (Manual)
@@ -25,16 +31,27 @@ This extension is adapted from the original Chrome Web Store extension to work n
 
 ### Firefox (Development)
 
-```bash
-npm install
-npx web-ext run
-```
+#### Optional: Use a Custom Firefox Profile
 
-## Supported Sites
+If you want to use a specific Firefox profile for development:
+1. Press <kbd>Win</kbd> + <kbd>R</kbd>, type `firefox.exe -P`, and press Enter.
+2. Choose or create a profile and note its name.
+3. Edit the `package.json` file in this folder:
+   - Change `"default-release"` in the `dev` script to your chosen profile name:
+     ```json
+     "dev": "web-ext run --source-dir . --firefox-profile \"your-profile-name\""
+     ```
 
-- **Glassdoor** - All international domains (.com, .co.uk, .de, .fr, etc.)
-- **TeamBlind** - teamblind.com
-- **Repvue** - repvue.com
+#### Quick Start
+
+1. Install [Node.js](https://nodejs.org/) if you don't have it.
+2. Open a terminal in this folder.
+3. Run the following commands:
+   ```bash
+   npm install
+   npm run dev
+   ```
+This will launch Firefox with your extension loaded for development.
 
 ## Technical Details
 
