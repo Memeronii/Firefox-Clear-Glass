@@ -70,7 +70,9 @@ class RemoveBlockers {
                 --blocker-tag: 1; 
             }
 
-            div#ReviewsFeed span {
+            /* Reviews section */
+            div#ReviewsFeed span,
+            div[data-test="reviews-list"] span {
                 white-space: normal !important;
             }
 
@@ -78,24 +80,49 @@ class RemoveBlockers {
                 display: none !important
             }
 
-            div#ReviewsFeed p {
+            div#ReviewsFeed p,
+            div[data-test="reviews-list"] p {
                 display: block !important;
                 max-height: none;
                 --limit: 0 !important;
             }
 
-            div#ReviewsFeed [class^="review-details_showMoreButton"] {
+            div#ReviewsFeed [class^="review-details_showMoreButton"],
+            div[data-test="reviews-list"] [class^="review-details_showMoreButton"] {
                 display: none;
             }
 
-            div#ReviewsFeed [class^="review-details_fullWidth"] {
+            div#ReviewsFeed [class^="review-details_fullWidth"],
+            div[data-test="reviews-list"] [class^="review-details_fullWidth"] {
+                pointer-events: none;
+            }
+
+            /* Interview section */
+            div[data-test="InterviewList"] span {
+                white-space: normal !important;
+            }
+
+            div[data-test="InterviewList"] p {
+                display: block !important;
+                max-height: none;
+                --limit: 0 !important;
+            }
+
+            div[data-test="InterviewList"] [class^="interview-details_readMoreButton"] {
+                display: none;
+            }
+
+            div[data-test="InterviewList"] [class^="interview-details_fullWidth"] {
                 pointer-events: none;
             }
         `;
             this.attachStyle(style);
             this.preventScrollLock();
             this.enableFilters();
-            setTimeout(() => this.replaceShowMoreButtons(), 1000);
+            setTimeout(() => {
+                this.replaceShowMoreButtons();
+                this.replaceInterviewReadMoreButtons();
+            }, 1000);
         };
         this.fromBlind = () => {
             const style = `
@@ -156,7 +183,17 @@ class RemoveBlockers {
     }
 
     replaceShowMoreButtons() {
-        document.querySelectorAll('div#ReviewsFeed [class^="review-details_showMoreButton"]')
+        document.querySelectorAll('div#ReviewsFeed [class^="review-details_showMoreButton"], div[data-test="reviews-list"] [class^="review-details_showMoreButton"]')
+            .forEach(button => {
+                const div = document.createElement('div');
+                div.innerHTML = `<span>${this.message}</span><span style="color:#085; font-weight: bold; font-size: 24px; padding-left: 5px;">${this.eyeIcon}</span>`;
+                div.style.cssText = 'color:#085; padding-bottom: 5px;';
+                button.replaceWith(div);
+            });
+    }
+    replaceInterviewReadMoreButtons() {
+
+        document.querySelectorAll('div[data-test="InterviewList"] [class^="interview-details_readMoreButton"]')
             .forEach(button => {
                 const div = document.createElement('div');
                 div.innerHTML = `<span>${this.message}</span><span style="color:#085; font-weight: bold; font-size: 24px; padding-left: 5px;">${this.eyeIcon}</span>`;
