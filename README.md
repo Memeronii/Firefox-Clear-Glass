@@ -38,7 +38,7 @@ npx web-ext run
 
 ## Technical Details
 
-- **Manifest Version**: 2 (Firefox compatible)
+- **Manifest Version**: 3 (Firefox compatible)
 - **Permissions**: `activeTab` only
 - **Architecture**: Content script + background script
 - **Size**: Optimized for minimal footprint
