@@ -186,7 +186,13 @@ class RemoveBlockers {
         document.querySelectorAll('div#ReviewsFeed [class^="review-details_showMoreButton"], div[data-test="reviews-list"] [class^="review-details_showMoreButton"]')
             .forEach(button => {
                 const div = document.createElement('div');
-                div.innerHTML = `<span>${this.message}</span><span style="color:#085; font-weight: bold; font-size: 24px; padding-left: 5px;">${this.eyeIcon}</span>`;
+                const spanMsg = document.createElement('span');
+                spanMsg.textContent = this.message;
+                const spanIcon = document.createElement('span');
+                spanIcon.textContent = this.eyeIcon;
+                spanIcon.style.cssText = 'color:#085; font-weight: bold; font-size: 24px; padding-left: 5px;';
+                div.appendChild(spanMsg);
+                div.appendChild(spanIcon);
                 div.style.cssText = 'color:#085; padding-bottom: 5px;';
                 button.replaceWith(div);
             });
@@ -196,7 +202,13 @@ class RemoveBlockers {
         document.querySelectorAll('div[data-test="InterviewList"] [class^="interview-details_readMoreButton"]')
             .forEach(button => {
                 const div = document.createElement('div');
-                div.innerHTML = `<span>${this.message}</span><span style="color:#085; font-weight: bold; font-size: 24px; padding-left: 5px;">${this.eyeIcon}</span>`;
+                const spanMsg = document.createElement('span');
+                spanMsg.textContent = this.message;
+                const spanIcon = document.createElement('span');
+                spanIcon.textContent = this.eyeIcon;
+                spanIcon.style.cssText = 'color:#085; font-weight: bold; font-size: 24px; padding-left: 5px;';
+                div.appendChild(spanMsg);
+                div.appendChild(spanIcon);
                 div.style.cssText = 'color:#085; padding-bottom: 5px;';
                 button.replaceWith(div);
             });
